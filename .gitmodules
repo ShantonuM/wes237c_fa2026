@@ -1,0 +1,3 @@
+[submodule "pp4fpgas"]
+	path = pp4fpgas
+	url = https://github.com/KastnerRG/Read_the_docs

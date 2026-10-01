@@ -41,7 +41,9 @@ CXX = g++
 LD_PATH_NEW = /usr/lib/x86_64-linux-gnu
 LD_LIBRARY_PATH := $(shell echo $(value LD_LIBRARY_PATH) | grep -q $(LD_PATH_NEW) || echo $(LD_PATH_NEW):)$(value LD_LIBRARY_PATH)
 
-GEN_TCL = $(CURDIR)/../../scripts/gen_hls_runner_script.py
+# Setting the scripts directory location for our repo
+SCRIPTS_DIR = $(CURDIR)/../../pp4fpgas/project_files/scripts
+GEN_TCL = $(SCRIPTS_DIR)/gen_hls_runner_script.py
 
 #HLS_CONFIG_FILE = $(CURDIR)/__hls_config__.ini
 HLS_CONFIG_FILE = $(CURDIR)/__hls_config__.ini

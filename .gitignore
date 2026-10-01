@@ -1,0 +1,3 @@
+# Ignore Vitis log and compiler intermediate files
+*.log
+*.comp

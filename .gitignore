@@ -1,3 +1,5 @@
 # Ignore Vitis log and compiler intermediate files
 *.log
 *.comp
+
+pp4fpgas/*

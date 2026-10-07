@@ -18,7 +18,6 @@ void fir (
   )
 {
   coef_t c[N] = {53, 0, -91, 0, 313, 500, 313, 0, -91, 0,53};
-  // Write your code here
   static
     data_t shift_reg[N];
     acc_t acc;

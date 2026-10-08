@@ -9,7 +9,7 @@
     y: filtered output
 
 */
-
+// Code below is for question 6 and was derived from question 5 code. 
 #include "fir.h"
 
 void fir (
@@ -25,6 +25,16 @@ void fir (
     acc_t acc;
     int i;
 
+  //#TODO: only 1 array patition scheme can be used at a time.
+  /* cyclic memory partitioning */
+  #pragma HLS array_partition variable=shift_reg cyclic factor=2
+  #pragma HLS array_partition variable=c cyclic factor=2
+  /* complete memory partitioning */
+  // #pragma HLS array_partition variable=shift_reg complete
+  // #pragma HLS array_partition variable=c complete
+  /* bloack memory partitioning */
+  // #pragma HLS array_partition variable=shift_reg block factor=2
+  // #pragma HLS array_partition variable=c block factor=2
   /* Leveraged from pp4fpgas book section 2.8/figure 2.5 */
   /* Loop Unrolling*/
   Tapped_Delayed_Line:

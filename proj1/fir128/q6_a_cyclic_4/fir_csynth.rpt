@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'fir'
 ================================================================
-* Date:           Thu Oct  8 20:02:46 2026
+* Date:           Thu Oct  8 20:40:42 2026
 
 * Version:        2024.2 (Build 5238294 on Nov  8 2024)
 * Project:        fir.comp
@@ -20,7 +20,7 @@
     +--------+----------+----------+------------+
     |  Clock |  Target  | Estimated| Uncertainty|
     +--------+----------+----------+------------+
-    |ap_clk  |  10.00 ns|  6.912 ns|     2.70 ns|
+    |ap_clk  |  10.00 ns|  7.040 ns|     2.70 ns|
     +--------+----------+----------+------------+
 
 + Latency: 
@@ -29,7 +29,7 @@
     |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
     |   min   |   max   |    min   |    max   | min | max |   Type  |
     +---------+---------+----------+----------+-----+-----+---------+
-    |      268|      268|  2.680 us|  2.680 us|  269|  269|       no|
+    |      208|      208|  2.080 us|  2.080 us|  209|  209|       no|
     +---------+---------+----------+----------+-----+-----+---------+
 
     + Detail: 
@@ -38,8 +38,8 @@
         |                                            |                                  |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
         |                  Instance                  |              Module              |   min   |   max   |    min   |    max   | min | max |                      Type                      |
         +--------------------------------------------+----------------------------------+---------+---------+----------+----------+-----+-----+------------------------------------------------+
-        |grp_fir_Pipeline_Tapped_Delayed_Line_fu_72  |fir_Pipeline_Tapped_Delayed_Line  |      130|      130|  1.300 us|  1.300 us|  128|  128|  loop auto-rewind stp (delay=0 clock cycles(s))|
-        |grp_fir_Pipeline_Multiply_Accumulate_fu_84  |fir_Pipeline_Multiply_Accumulate  |      133|      133|  1.330 us|  1.330 us|  129|  129|  loop auto-rewind stp (delay=0 clock cycles(s))|
+        |grp_fir_Pipeline_Tapped_Delayed_Line_fu_72  |fir_Pipeline_Tapped_Delayed_Line  |      134|      134|  1.340 us|  1.340 us|  130|  130|  loop auto-rewind stp (delay=0 clock cycles(s))|
+        |grp_fir_Pipeline_Multiply_Accumulate_fu_84  |fir_Pipeline_Multiply_Accumulate  |       69|       69|  0.690 us|  0.690 us|   65|   65|  loop auto-rewind stp (delay=0 clock cycles(s))|
         +--------------------------------------------+----------------------------------+---------+---------+----------+----------+-----+-----+------------------------------------------------+
 
         * Loop: 
@@ -57,16 +57,16 @@
 |DSP              |        -|    -|       -|      -|    -|
 |Expression       |        -|    -|       0|      2|    -|
 |FIFO             |        -|    -|       -|      -|    -|
-|Instance         |        0|    2|     524|    321|    -|
+|Instance         |        0|    4|     956|    811|    -|
 |Memory           |        8|    -|       0|      0|    0|
 |Multiplexer      |        -|    -|       0|    230|    -|
 |Register         |        -|    -|       8|      -|    -|
 +-----------------+---------+-----+--------+-------+-----+
-|Total            |        8|    2|     532|    553|    0|
+|Total            |        8|    4|     964|   1043|    0|
 +-----------------+---------+-----+--------+-------+-----+
 |Available        |      280|  220|  106400|  53200|    0|
 +-----------------+---------+-----+--------+-------+-----+
-|Utilization (%)  |        2|   ~0|      ~0|      1|    0|
+|Utilization (%)  |        2|    1|      ~0|      1|    0|
 +-----------------+---------+-----+--------+-------+-----+
 
 + Detail: 
@@ -74,10 +74,10 @@
     +--------------------------------------------+----------------------------------+---------+----+-----+-----+-----+
     |                  Instance                  |              Module              | BRAM_18K| DSP|  FF | LUT | URAM|
     +--------------------------------------------+----------------------------------+---------+----+-----+-----+-----+
-    |grp_fir_Pipeline_Multiply_Accumulate_fu_84  |fir_Pipeline_Multiply_Accumulate  |        0|   2|  370|  235|    0|
-    |grp_fir_Pipeline_Tapped_Delayed_Line_fu_72  |fir_Pipeline_Tapped_Delayed_Line  |        0|   0|  154|   86|    0|
+    |grp_fir_Pipeline_Multiply_Accumulate_fu_84  |fir_Pipeline_Multiply_Accumulate  |        0|   4|  604|  350|    0|
+    |grp_fir_Pipeline_Tapped_Delayed_Line_fu_72  |fir_Pipeline_Tapped_Delayed_Line  |        0|   0|  352|  461|    0|
     +--------------------------------------------+----------------------------------+---------+----+-----+-----+-----+
-    |Total                                       |                                  |        0|   2|  524|  321|    0|
+    |Total                                       |                                  |        0|   4|  956|  811|    0|
     +--------------------------------------------+----------------------------------+---------+----+-----+-----+-----+
 
     * DSP: 

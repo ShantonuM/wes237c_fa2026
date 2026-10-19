@@ -39,17 +39,16 @@ void cordiccart2pol(data_t x, data_t y, data_t *r, data_t *theta)
 		x_temp = x;
 		if (y > 0.0f)
 		{
-			x += y * factor;
-			y -= x_temp * factor;
+			x += y * Kvalues[i];
+			y -= x_temp * Kvalues[i];
 			*theta += angles[i];
 		}
 		else
 		{
-			x -= y * factor;
-			y += x_temp * factor;
+			x -= y * Kvalues[i];
+			y += x_temp * Kvalues[i];
 			*theta -= angles[i];
 		}
-		factor = factor / 2; // 2^-i
 	}
 
 	*r = x * cordic_gain_inv;

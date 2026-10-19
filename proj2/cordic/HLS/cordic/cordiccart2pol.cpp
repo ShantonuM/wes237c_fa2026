@@ -24,16 +24,16 @@ void cordiccart2pol(data_t x, data_t y, data_t *r, data_t *theta)
 	data_t x_temp = x;
 	// need a sanity check when y = 0;
 	if (y > 0.0f)
-	{ // rotate by -90deg; (x, y) -> (y, -x)
+	{ // rotate by +90deg; (x, y) -> (y, -x)
 		x = y;
 		y = -x_temp;
-		*theta = -INITAL_QUAD_ROTATION;
+		*theta = INITAL_QUAD_ROTATION;
 	}
-	else // rotate by +90deg
+	else // rotate by -90deg
 	{
 		x = -y;
 		y = x_temp;
-		*theta = INITAL_QUAD_ROTATION;
+		*theta = -INITAL_QUAD_ROTATION;
 
 	}
 

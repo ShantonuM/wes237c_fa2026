@@ -8,5 +8,22 @@ data_t angles[NO_ITER] = {0.785398163397448,	0.463647609000806,	0.24497866312686
 void cordiccart2pol(data_t x, data_t y, data_t * r,  data_t * theta)
 {
 	// Write your code here
-	
+	// so basically we have to implemented cordic first for cos and sin
+	// in the for loop as we go down the list of i values for tan(theta) it is a shift of value 2^i 
+	/**
+	 * // pseudo code for rotation?
+	 * 
+	 * for i in lengthOfRotations:
+	 * x1 = x0 - (y0 >> 1)
+	 * y1 = y0 + (x0 >> 1)
+	 * 
+	 * x0 = x1; y0 = y1;
+	 * 
+	 * 
+	 * if y > 0:
+	 * ttheta = theta - 90
+	 * else:
+	 * theta = theta + 90
+	 * 	
+	 */
 }

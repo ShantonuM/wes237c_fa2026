@@ -31,8 +31,6 @@ void cordiccart2pol(data_t x, data_t y, data_t *r, data_t *theta)
 
 	}
 
-	x_temp = 0.0f;
-	data_t factor = 1; // this will represent 2^0
 	// loop for our rotations
 	for (int i = 0; i < NO_ITER; i++)
 	{

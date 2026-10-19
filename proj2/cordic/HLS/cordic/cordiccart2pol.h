@@ -8,7 +8,6 @@ typedef int   coef_t;
 typedef float data_t;
 typedef float acc_t;
 
-// Constant Look-Up Tables (LUTs) placed in BRAM/ROM
 static const float ROTATING_ANGLES[NO_ITER] = {
     45.000, 26.565, 14.036, 7.125, 3.576, 1.790, 0.895, 0.448,
     0.224,  0.112,  0.056,  0.028, 0.014, 0.007, 0.003, 0.002

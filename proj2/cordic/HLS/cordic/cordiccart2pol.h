@@ -17,7 +17,7 @@ static const float SCALING_FACTORS[NO_ITER] = {
     1.41421, 1.11803, 1.03078, 1.00778, 1.00195, 1.00049, 1.00012, 1.00003,
     1.00001, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000
 };
-
+ 
 void cordiccart2pol(data_t x, data_t y, data_t * r,  data_t * theta);
 
 #endif

@@ -51,4 +51,6 @@ void cordiccart2pol(data_t x, data_t y, data_t *r, data_t *theta)
 		}
 		factor = factor / 2; // 2^-i
 	}
+
+	*r = x * cordic_gain_inv;
 }

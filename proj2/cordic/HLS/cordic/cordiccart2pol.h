@@ -17,6 +17,10 @@ data_t scaling_factor[NO_ITER] = {
     1.00001, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000
 };
 
+data_t cordic_gain = 1.64676;
+
+data_t cordic_gain_inv = 0.607253; // 1/cordic_gain
+
 void cordiccart2pol(data_t x, data_t y, data_t * r,  data_t * theta);
 
 #endif

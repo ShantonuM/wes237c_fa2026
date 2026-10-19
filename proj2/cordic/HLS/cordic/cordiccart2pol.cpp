@@ -32,7 +32,8 @@ void cordiccart2pol(data_t x, data_t y, data_t *r, data_t *theta)
 	}
 
 	// loop for our rotations
-	for (int i = 0; i < NO_ITER; i++)
+	int ITERATIONS = NO_ITER;
+	for (int i = 0; i < ITERATIONS; i++)
 	{
 		x_temp = x;
 		if (y > 0.0f)
@@ -49,5 +50,5 @@ void cordiccart2pol(data_t x, data_t y, data_t *r, data_t *theta)
 		}
 	}
 
-	*r = x * cordic_gain_inv;
+	*r = x * cordic_gain[ITERATIONS-1];
 }

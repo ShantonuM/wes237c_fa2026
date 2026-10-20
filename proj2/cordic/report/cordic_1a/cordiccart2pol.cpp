@@ -39,10 +39,7 @@ void cordiccart2pol(data_t x, data_t y, data_t *r, data_t *theta)
 
 	// loop for our rotations
 	int ITERATIONS = 10;
-	// int ITERATIONS = NO_ITER;
-	// int ITERATIONS = NO_ITER;
-	// int ITERATIONS = NO_ITER;
-	// int ITERATIONS = NO_ITER;
+
 	for (int i = 0; i < ITERATIONS; i++)
 	{
 		x_temp = x;

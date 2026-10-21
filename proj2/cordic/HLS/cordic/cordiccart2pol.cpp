@@ -44,14 +44,14 @@ void cordiccart2pol(data_t x, data_t y, data_t *r, data_t *theta)
 		x_temp = xf;
 		if (yf > 0)
 		{
-			xf += yf * Kvalues[i];
-			yf -= x_temp * Kvalues[i];
+			xf = xf + (yf >> i);
+			yf = yf - (x_temp >> i);
 			thetaf += angles[i];
 		}
 		else
 		{
-			xf -= yf * Kvalues[i];
-			yf += x_temp * Kvalues[i];
+			xf = xf - (yf >> i);
+			yf = yf + (x_temp >> i);
 			thetaf -= angles[i];
 		}
 	}

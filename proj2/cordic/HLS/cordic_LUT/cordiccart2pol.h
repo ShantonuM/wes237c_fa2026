@@ -4,7 +4,7 @@
 #include <ap_fixed.h>
 
 #define DEBUG 0
-//#define SYNTHESIS // uncomment me for synthesis; comment me for simulation
+#define SYNTHESIS // uncomment me for synthesis; comment me for simulation
 
 typedef ap_fixed<8,3> data_t; // Data type of a value in the LUT
 

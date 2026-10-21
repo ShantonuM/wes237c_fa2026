@@ -1,4 +1,4 @@
-#include "cxordiccart2pol.h"
+#include "cordiccart2pol.h"
 
 fix_t Kvalues[NO_ITER] = {1, 0.500000000000000, 0.250000000000000, 0.125000000000000, 0.0625000000000000, 0.0312500000000000, 0.0156250000000000, 0.00781250000000000, 0.00390625000000000, 0.00195312500000000, 0.000976562500000000, 0.000488281250000000, 0.000244140625000000, 0.000122070312500000, 6.10351562500000e-05, 3.05175781250000e-05, 1.52587890625000e-05, 7.62939453125000e-06, 3.81469726562500e-06, 1.90734863281250e-06};
 
@@ -11,6 +11,8 @@ const fix_t INITAL_QUAD_ROTATION = 1.570796326794897;
 
 void cordiccart2pol(data_t x, data_t y, data_t *r, data_t *theta)
 {
+
+	fix_t xf, yf, thetaf, x_temp;
 	/**
 	 * // pseudo code for rotation after baseline implementation(bit shifting)
 	 *
@@ -21,39 +23,39 @@ void cordiccart2pol(data_t x, data_t y, data_t *r, data_t *theta)
 	 * x0 = x1; y0 = y1;
 	 */
 	// temporary x to be used in quadrant rotation check
-	fix_t x_temp = x;
 	// need a sanity check when y = 0;
 	if (y > 0.0f) // initial angle is +90; (x, y) -> (y, -x)
 	{ 
-		x = y;
-		y = -x_temp;
-		*theta = INITAL_QUAD_ROTATION;
+		xf = y;
+		yf = -x;
+		thetaf= INITAL_QUAD_ROTATION;
 	}
 	else // intial angle is -90deg
 	{
-		x = -y;
-		y = x_temp;
-		*theta = -INITAL_QUAD_ROTATION;
+		xf = -y;
+		yf = x;
+		thetaf = -INITAL_QUAD_ROTATION;
 
 	}
 
 	// loop for our rotations
 	for (int i = 0; i < NO_ITER; i++)
 	{
-		x_temp = x;
-		if (y > 0.0f)
+		x_temp = xf;
+		if (yf > 0)
 		{
-			x += y * Kvalues[i];
-			y -= x_temp * Kvalues[i];
-			*theta += angles[i];
+			xf += yf * Kvalues[i];
+			yf -= x_temp * Kvalues[i];
+			thetaf += angles[i];
 		}
 		else
 		{
-			x -= y * Kvalues[i];
-			y += x_temp * Kvalues[i];
-			*theta -= angles[i];
+			xf -= yf * Kvalues[i];
+			yf += x_temp * Kvalues[i];
+			thetaf -= angles[i];
 		}
 	}
 
-	*r = x * cordic_gain[ITERATIONS-1];
+	*r = xf * cordic_gain[NO_ITER-1];
+	*theta = thetaf;
 }

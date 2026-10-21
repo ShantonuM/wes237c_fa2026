@@ -37,7 +37,15 @@ int main()
 
 #ifndef SYNTHESIS
 	init_cart2pol_LUTs(my_LUT_th, my_LUT_r); // Fill in the LUT for simulation results
-#endif
+	FILE *fr = fopen("lut_r.txt", "w");
+    FILE *ft = fopen("lut_th.txt", "w");
+    for (int i = 0; i < LUT_SIZE; i++) {
+        fprintf(fr, "%.17g,\n", my_LUT_r[i].to_double());
+        fprintf(ft, "%.17g,\n", my_LUT_th[i].to_double());
+    }
+    fclose(fr);
+    fclose(ft);
+	#endif
 
 	// Compare results from cordiccart2pol against the ground truth
 	float x;

@@ -85,7 +85,7 @@ report: hls
 
 
 clean:
-	rm -rf *.o *.log *.bin *.tcl *.comp *.rpt logs hls out.dat
+	rm -rf *.o *.log *.bin *.tcl *.comp *.rpt logs hls out.dat *.txt
 
 .PHONY: clean hls test report
 

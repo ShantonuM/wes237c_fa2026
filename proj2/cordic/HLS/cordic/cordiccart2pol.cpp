@@ -11,7 +11,12 @@ const fix_t INITAL_QUAD_ROTATION = 1.570796326794897;
 
 void cordiccart2pol(data_t x, data_t y, data_t *r, data_t *theta)
 {
-
+	#pragma HLS INTERFACE mode=s_axilite port=return
+	#pragma HLS INTERFACE mode=s_axilite port=x
+	#pragma HLS INTERFACE mode=s_axilite port=y
+	#pragma HLS INTERFACE mode=s_axilite port=r
+	#pragma HLS INTERFACE mode=s_axilite port=theta
+	
 	fix_t xf, yf, thetaf, x_temp;
 	/**
 	 * // pseudo code for rotation after baseline implementation(bit shifting)
@@ -22,8 +27,6 @@ void cordiccart2pol(data_t x, data_t y, data_t *r, data_t *theta)
 	 *
 	 * x0 = x1; y0 = y1;
 	 */
-	// temporary x to be used in quadrant rotation check
-	// need a sanity check when y = 0;
 	if (y > 0.0f) // initial angle is +90; (x, y) -> (y, -x)
 	{ 
 		xf = y;

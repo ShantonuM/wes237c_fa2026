@@ -2,3 +2,7 @@
 #*.log
 *.comp
 *logs
+*.jou
+project_2_cordic/
+*.str
+.Xil/

@@ -7,3 +7,6 @@ project_2_cordic/
 *.str
 .Xil/
 *.log
+
+# Ignore the lab folders
+lab*

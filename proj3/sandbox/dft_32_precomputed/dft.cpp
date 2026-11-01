@@ -7,7 +7,6 @@ void dft
   DTYPE imag_sample[SIZE]
 )
 {
-  DTYPE w;
   DTYPE c, s;
   int   i, j;
 
@@ -20,9 +19,6 @@ void dft
   {
     temp_real[i] = 0;
     temp_imag[i] = 0;
-
-    /* (2 * pi * i) / SIZE */
-    w = (2.0 * 3.141592653589 / SIZE) * (DTYPE)i;
 
     /* Calculate the j-th frequency sample sequentially */
     for (j = 0; j < SIZE; j += 1)

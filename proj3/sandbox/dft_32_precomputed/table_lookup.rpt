@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'dft'
 ================================================================
-* Date:           Sun Nov  1 03:45:05 2026
+* Date:           Sun Nov  1 04:03:11 2026
 
 * Version:        2024.2 (Build 5238294 on Nov  8 2024)
 * Project:        dft.comp
@@ -38,8 +38,8 @@
         |                                          |                              |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
         |                 Instance                 |            Module            |   min   |   max   |    min   |    max   | min | max |                      Type                      |
         +------------------------------------------+------------------------------+---------+---------+----------+----------+-----+-----+------------------------------------------------+
-        |grp_dft_Pipeline_VITIS_LOOP_19_1_fu_818   |dft_Pipeline_VITIS_LOOP_19_1  |      204|      204|  2.040 us|  2.040 us|   33|   33|  loop auto-rewind stp (delay=0 clock cycles(s))|
-        |grp_dft_Pipeline_VITIS_LOOP_44_3_fu_1016  |dft_Pipeline_VITIS_LOOP_44_3  |       34|       34|  0.340 us|  0.340 us|   33|   33|  loop auto-rewind stp (delay=0 clock cycles(s))|
+        |grp_dft_Pipeline_VITIS_LOOP_18_1_fu_818   |dft_Pipeline_VITIS_LOOP_18_1  |      204|      204|  2.040 us|  2.040 us|   33|   33|  loop auto-rewind stp (delay=0 clock cycles(s))|
+        |grp_dft_Pipeline_VITIS_LOOP_40_3_fu_1016  |dft_Pipeline_VITIS_LOOP_40_3  |       34|       34|  0.340 us|  0.340 us|   33|   33|  loop auto-rewind stp (delay=0 clock cycles(s))|
         +------------------------------------------+------------------------------+---------+---------+----------+----------+-----+-----+------------------------------------------------+
 
         * Loop: 
@@ -74,8 +74,8 @@
     +------------------------------------------+------------------------------+---------+-----+-------+-------+-----+
     |                 Instance                 |            Module            | BRAM_18K| DSP |   FF  |  LUT  | URAM|
     +------------------------------------------+------------------------------+---------+-----+-------+-------+-----+
-    |grp_dft_Pipeline_VITIS_LOOP_19_1_fu_818   |dft_Pipeline_VITIS_LOOP_19_1  |       64|  640|  55203|  91106|    0|
-    |grp_dft_Pipeline_VITIS_LOOP_44_3_fu_1016  |dft_Pipeline_VITIS_LOOP_44_3  |        0|    0|     15|     66|    0|
+    |grp_dft_Pipeline_VITIS_LOOP_18_1_fu_818   |dft_Pipeline_VITIS_LOOP_18_1  |       64|  640|  55203|  91106|    0|
+    |grp_dft_Pipeline_VITIS_LOOP_40_3_fu_1016  |dft_Pipeline_VITIS_LOOP_40_3  |        0|    0|     15|     66|    0|
     +------------------------------------------+------------------------------+---------+-----+-------+-------+-----+
     |Total                                     |                              |       64|  640|  55218|  91172|    0|
     +------------------------------------------+------------------------------+---------+-----+-------+-------+-----+
@@ -193,8 +193,8 @@
     |empty_98_reg_2051                                      |  32|   0|   32|          0|
     |empty_99_reg_2056                                      |  32|   0|   32|          0|
     |empty_reg_1906                                         |  32|   0|   32|          0|
-    |grp_dft_Pipeline_VITIS_LOOP_19_1_fu_818_ap_start_reg   |   1|   0|    1|          0|
-    |grp_dft_Pipeline_VITIS_LOOP_44_3_fu_1016_ap_start_reg  |   1|   0|    1|          0|
+    |grp_dft_Pipeline_VITIS_LOOP_18_1_fu_818_ap_start_reg   |   1|   0|    1|          0|
+    |grp_dft_Pipeline_VITIS_LOOP_40_3_fu_1016_ap_start_reg  |   1|   0|    1|          0|
     |imag_sample_load_10_reg_1511                           |  32|   0|   32|          0|
     |imag_sample_load_11_reg_1521                           |  32|   0|   32|          0|
     |imag_sample_load_12_reg_1551                           |  32|   0|   32|          0|

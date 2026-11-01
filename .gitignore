@@ -1,12 +1,10 @@
 # Ignore Vitis log and compiler intermediate files
-#*.log
 *.comp
 *logs
 *.jou
 project_2_cordic/
 *.str
 .Xil/
-*.log
 
 # Ignore the lab folders
 lab*

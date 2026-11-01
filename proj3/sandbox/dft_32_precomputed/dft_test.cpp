@@ -60,8 +60,8 @@ int main()
   for(int i=0; i<SIZE; i++)
   {
     fscanf(fp, "%d %f %f", &index, &gold_R, &gold_I);
-    rmse_R.add_value((float)In_R[i] - gold_R);
-    rmse_I.add_value((float)In_I[i] - gold_I);
+    rmse_R.add_value((float)Out_R[i] - gold_R);
+    rmse_I.add_value((float)Out_I[i] - gold_I);
   }
   fclose(fp);
 

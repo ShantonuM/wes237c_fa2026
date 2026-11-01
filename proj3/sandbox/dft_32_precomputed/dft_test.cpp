@@ -7,9 +7,9 @@ OUTPUT:
 
 */
 
-#include<stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
-#include<iostream>
+#include <iostream>
 #include <math.h>
 #include "dft.h"
 
@@ -35,6 +35,7 @@ struct Rmse
 Rmse rmse_R,  rmse_I;
 
 DTYPE In_R[SIZE], In_I[SIZE];
+DTYPE Out_R[SIZE], Out_I[SIZE];
 
 int main()
 {
@@ -50,10 +51,9 @@ int main()
     In_I[i] = 0.0;
 
   }
-  
 
   // DFT
-  dft(In_R, In_I);
+  dft(In_R, In_I, Out_R, Out_I);
 
 
   // comparing with golden output

@@ -3,22 +3,21 @@
 
 void dft
 (
-  DTYPE real_sample[SIZE],
-  DTYPE imag_sample[SIZE]
+  DTYPE in_real[SIZE],
+  DTYPE in_imag[SIZE],
+  DTYPE out_real[SIZE],
+  DTYPE out_imag[SIZE]
 )
 {
   DTYPE c, s;
   int   i, j;
 
-  /* Temporary arrays to hold the intermediate frequency domain results */
-  DTYPE temp_real[SIZE];
-  DTYPE temp_imag[SIZE];
-
   /* Calculate each frequency domain sample iteratively */
   for (i = 0; i < SIZE; i += 1)
   {
-    temp_real[i] = 0;
-    temp_imag[i] = 0;
+    /* ZI the outputs */
+    out_real[i] = 0;
+    out_imag[i] = 0;
 
     /* Calculate the j-th frequency sample sequentially */
     for (j = 0; j < SIZE; j += 1)
@@ -31,16 +30,9 @@ void dft
        * Multiply the current phasor with the appropriate input sample and keep
        * running sum.
        */
-      temp_real[i] += (real_sample[j] * c - imag_sample[j] * s);
-      temp_imag[i] += (real_sample[j] * s + imag_sample[j] * c);
+      out_real[i] += (in_real[j] * c - in_imag[j] * s);
+      out_imag[i] += (in_real[j] * s + in_imag[j] * c);
     }
-  }
-
-  /* Perform an in-place DFT, i.e. copy result into the input arrays */
-  for (i = 0; i < SIZE; i += 1)
-  {
-    real_sample[i] = temp_real[i];
-    imag_sample[i] = temp_imag[i];
   }
 }
 

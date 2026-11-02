@@ -13,15 +13,20 @@ void dft
   DTYPE c, s;
   int   i, j, k;
 
-  /* Calculate each frequency domain sample iteratively */
+  /* ZI the outputs */
   for (i = 0; i < SIZE; i += 1)
   {
-    /* ZI the outputs */
     real_op[i] = 0;
     imag_op[i] = 0;
+  }
 
-    /* Calculate the j-th frequency sample sequentially */
-    for (j = 0; j < SIZE; j += 1)
+  /*
+   * Calculate the contribution of the j-th input sample to every frequency
+   * component/output.
+   */
+  for (j = 0; j < SIZE; j += 1)
+  {
+    for (i = 0; i < SIZE; i += 1)
     {
       /* Utilize the precomputed sine and cosine values */
       k = (i * j) & (SIZE - 1);

@@ -1,6 +1,5 @@
 #include <math.h>
 #include "dft.h"
-#include "coefficients1024.h"
 
 void dft
 (
@@ -10,16 +9,13 @@ void dft
   DTYPE imag_op[SIZE]
 )
 {
-  DTYPE w;
   DTYPE c, s;
-  int   i, j;
+  int   i, j, k;
+  const DTYPE w = 2.0 * 3.141592653589 / SIZE;
 
   /* Calculate each frequency domain sample iteratively */
   for (i = 0; i < SIZE; i += 1)
   {
-    /* (2 * pi * i) / SIZE */
-    w = (2.0 * 3.141592653589 / SIZE) * (DTYPE)i;
-
     /* ZI the outputs */
     real_op[i] = 0;
     imag_op[i] = 0;
@@ -28,8 +24,9 @@ void dft
     for (j = 0; j < SIZE; j += 1)
     {
       /* Utilize HLS tool to calculate sine and cosine values */
-      c = cos(j * w);
-      s = -sin(j * w);
+      k = (i * j) & (SIZE - 1);
+      c = cos((DTYPE)k * w);
+      s = -sin((DTYPE)k * w);
 
       /*
        * Multiply the current phasor with the appropriate input sample and keep

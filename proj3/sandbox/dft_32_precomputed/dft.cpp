@@ -23,8 +23,6 @@ void dft
   /* Calculate each frequency domain sample iteratively */
   for (i = 0; i < SIZE; i += 1)
   {
-    #pragma HLS PIPELINE II=1
-
     /* ZI the outputs */
     out_real[i] = 0;
     out_imag[i] = 0;
@@ -32,7 +30,7 @@ void dft
     /* Calculate the j-th frequency sample sequentially */
     for (j = 0; j < SIZE; j += 1)
     {
-      #pragma HLS PIPELINE II=1
+      #pragma HLS unroll factor=32
 
       /* Utilize the precomputed sine and cosine values */
       c = cos_coeff_table[i][j];

@@ -12,8 +12,13 @@ void dft
   DTYPE c, s;
   int   i, j;
 
-  #pragma HLS array_partition variable=cos_coeff_table block factor=32
-  #pragma HLS array_partition variable=sin_coeff_table block factor=32
+  #pragma HLS array_partition variable=cos_coeff_table block factor=32 dim=2
+  #pragma HLS array_partition variable=sin_coeff_table block factor=32 dim=2
+  #pragma HLS array_partition variable=in_real         block factor=32
+  #pragma HLS array_partition variable=in_imag         block factor=32
+  #pragma HLS array_partition variable=out_real        block factor=32
+  #pragma HLS array_partition variable=out_imag        block factor=32
+
 
   /* Calculate each frequency domain sample iteratively */
   for (i = 0; i < SIZE; i += 1)

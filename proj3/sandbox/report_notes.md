@@ -14,3 +14,10 @@ dim=2 splits by col - so each column entry gets its own BRAM, and can all be rea
 
 Also, need to partition the input arrays because of the outer loop being unrolled/pipeline II=1. Otherwise, HLS will have to preload the 32 values at 2 per cycle.  
 Observed a latency drop from 221 -> 206 when input arrs were partitioned.
+
+## Q6a
+
+The as-is baseline implementation from the textbook almost worked - but the RMSE threshold of 0.1 was breached.  
+This is due to the float precision loss at large input angles to cos and sin - (j * w).  
+Hence, had to do a math trick to keep the 2 * pi / SIZE a const, and then do (i * j) & (SIZE - 1) to essentially do a (i * j) % SIZE (this works because SIZE is a power of 2).  
+Math: sin/cos(theta + 2pi) = sin/cos(theta)

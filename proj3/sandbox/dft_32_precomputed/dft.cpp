@@ -12,9 +12,14 @@ void dft
   DTYPE c, s;
   int   i, j;
 
+  #pragma HLS array_partition variable=cos_coeff_table block factor=32
+  #pragma HLS array_partition variable=sin_coeff_table block factor=32
+
   /* Calculate each frequency domain sample iteratively */
   for (i = 0; i < SIZE; i += 1)
   {
+    #pragma HLS PIPELINE II=1
+
     /* ZI the outputs */
     out_real[i] = 0;
     out_imag[i] = 0;
@@ -22,6 +27,8 @@ void dft
     /* Calculate the j-th frequency sample sequentially */
     for (j = 0; j < SIZE; j += 1)
     {
+      #pragma HLS PIPELINE II=1
+
       /* Utilize the precomputed sine and cosine values */
       c = cos_coeff_table[i][j];
       s = sin_coeff_table[i][j];

@@ -38,33 +38,47 @@ DTYPE In_R[SIZE], In_I[SIZE],Out_R[SIZE],Out_I[SIZE];   //Modify the testbench w
 
 int main()
 {
-  int index;
-  float gold_R, gold_I;
+  int                   i, index;
+  float                 gold_R, gold_I;
+  transPkt              real_pkt, imag_pkt;
+  hls::stream<transPkt> real_ip_stream, imag_ip_stream;
+  hls::stream<transPkt> real_op_stream, imag_op_stream;
 
   FILE * fp = fopen("out.gold.dat","r");
 
-  // getting input data
-  for(int i=0; i<SIZE; i++)
+  for (i = 0; i < SIZE; i += 1)
   {
-    In_R[i] = i;
-    In_I[i] = 0.0;
+    const bool last = (i == SIZE - 1);
 
+    /* Form the real data packet */
+    real_pkt.data = i;
+    real_pkt.keep = 0xF;
+    real_pkt.strb = 0xF;
+    real_pkt.last = last;
+
+    imag_pkt.data = 0.0;
+    imag_pkt.keep = 0xF;
+    imag_pkt.strb = 0xF;
+    imag_pkt.last = last;
+
+    real_ip_stream.write(real_pkt);
+    imag_ip_stream.write(imag_pkt);
   }
-  
 
   // DFT
-  dft(In_R, In_I,Out_R,Out_I);
-
+  dft(real_ip_stream, imag_ip_stream, real_op_stream, imag_op_stream);
 
   // comparing with golden output
-  for(int i=0; i<SIZE; i++)
+  for(i=0; i<SIZE; i++)
   {
+    real_pkt = real_op_stream.read();
+    imag_pkt = imag_op_stream.read();
+
     fscanf(fp, "%d %f %f", &index, &gold_R, &gold_I);
-    rmse_R.add_value((float)Out_R[i] - gold_R);
-    rmse_I.add_value((float)Out_I[i] - gold_I);
+    rmse_R.add_value((float)real_pkt.data - gold_R);
+    rmse_I.add_value((float)imag_pkt.data - gold_I);
   }
   fclose(fp);
-
 
   // printing error results
   printf("----------------------------------------------\n");

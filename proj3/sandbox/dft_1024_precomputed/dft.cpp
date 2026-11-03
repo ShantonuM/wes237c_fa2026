@@ -28,6 +28,8 @@ void dft
   {
     for (i = 0; i < SIZE; i += 1)
     {
+      #pragma HLS UNROLL factor=2
+
       /* Utilize the precomputed sine and cosine values */
       k = (i * j) & (SIZE - 1);
       c = cos_coefficients_table[k];

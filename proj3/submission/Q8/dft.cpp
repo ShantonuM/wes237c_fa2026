@@ -14,7 +14,6 @@ void dft
   DTYPE imag_op[SIZE]
 )
 {
-  DTYPE w;
   DTYPE c, s;
   int   i, j, k;
 

@@ -1,6 +1,11 @@
 #include "dft.h"
 #include "coefficients1024.h"
 
+#define UNROLL_FACTOR   8
+
+/* Keeping the array partitioning factor the same as the loop unrolling one */
+#define ARR_PART_FACTOR UNROLL_FACTOR
+
 void dft
 (
   DTYPE real_sample[SIZE],
@@ -12,6 +17,9 @@ void dft
   DTYPE w;
   DTYPE c, s;
   int   i, j, k;
+
+  #pragma HLS array_partition variable=real_op cyclic factor=ARR_PART_FACTOR
+  #pragma HLS array_partition variable=imag_op cyclic factor=ARR_PART_FACTOR
 
   /* ZI the outputs */
   for (i = 0; i < SIZE; i += 1)
@@ -28,7 +36,7 @@ void dft
   {
     for (i = 0; i < SIZE; i += 1)
     {
-      #pragma HLS UNROLL factor=2
+      #pragma HLS UNROLL factor=UNROLL_FACTOR
 
       /* Utilize the precomputed sine and cosine values */
       k = (i * j) & (SIZE - 1);

@@ -19,7 +19,6 @@ void dft
   #pragma HLS array_partition variable=out_real        block factor=32
   #pragma HLS array_partition variable=out_imag        block factor=32
 
-
   /* Calculate each frequency domain sample iteratively */
   for (i = 0; i < SIZE; i += 1)
   {

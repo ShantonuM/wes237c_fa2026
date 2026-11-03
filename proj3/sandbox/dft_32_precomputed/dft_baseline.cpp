@@ -1,6 +1,5 @@
 #include <math.h>
 #include "dft.h"
-#include "coefficients32.h"
 
 void dft
 (

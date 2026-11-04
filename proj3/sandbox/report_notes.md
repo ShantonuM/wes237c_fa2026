@@ -21,3 +21,11 @@ The as-is baseline implementation from the textbook almost worked - but the RMSE
 This is due to the float precision loss at large input angles to cos and sin - (j * w).  
 Hence, had to do a math trick to keep the 2 * pi / SIZE a const, and then do (i * j) & (SIZE - 1) to essentially do a (i * j) % SIZE (this works because SIZE is a power of 2).  
 Math: sin/cos(theta + 2pi) = sin/cos(theta)
+
+## Q8
+
+Started with Q7. With the data dependency removed, tried to pipeline the inner loop - turned out that HLS already auto-pipelined it within Q7.  
+Tried unrolling it - but only unrolling does not help; performance is bottlenecked at writing to the output arrays.  
+Added cyclic partitioning with the same factor as unrolling.  
+
+Did a sweep through factor = 2, 4, 8 and 16. At 16, DSP usage was > 100%.

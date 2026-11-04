@@ -37,6 +37,9 @@ void dft
     real_pkt = real_ip_stream.read();
     imag_pkt = imag_ip_stream.read();
 
+    real_sample[i] = real_pkt.data;
+    imag_sample[i] = imag_pkt.data;
+
     real_op[i] = 0;
     imag_op[i] = 0;
   }

@@ -29,12 +29,6 @@ void phasedetector(
 
 #pragma HLS PIPELINE II = 1
 
-#pragma HLS INTERFACE mode = axis port = I
-#pragma HLS INTERFACE mode = axis port = Q
-#pragma HLS INTERFACE mode = axis port = R
-#pragma HLS INTERFACE mode = axis port = Theta
-#pragma HLS INTERFACE mode = s_axilite port = return
-
 	data_t x, y;
 
 	fir(I, Q, &x, &y);

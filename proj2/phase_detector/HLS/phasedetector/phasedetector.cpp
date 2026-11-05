@@ -47,8 +47,8 @@ void phasedetector_stream (
   hls::stream<pkt_t> &R_out,
   hls::stream<pkt_t> &T_out
   ){
-#pragma HLS INTERFACE mode=axis port=I_in,Q_in,R_out,T_out
-#pragma HLS INTERFACE mode=s_axilite port=return
+	#pragma HLS INTERFACE mode=axis port=I_in,Q_in,R_out,T_out
+	#pragma HLS INTERFACE mode=s_axilite port=return
 	while (true) {
 		pkt_t i_pkt = I_in.read();
 		pkt_t q_pkt = Q_in.read();

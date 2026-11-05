@@ -7,7 +7,6 @@ project_2_cordic/
 .Xil/
 
 # Ignore the lab folders
-lab*
 
 # Ignore the Vivado project folders
 *vivado_proj

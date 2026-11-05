@@ -9,7 +9,8 @@
 
 
 #include <ap_fixed.h>
-
+#include "ap_axi_sdata.h"
+#include "hls_stream.h"
 /* From Lab: Axistream Multiple DMAs (axis) */
 typedef hls::axis<float, 0, 0, 0> pkt_t;
 

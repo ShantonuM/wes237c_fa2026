@@ -3,6 +3,7 @@
 *logs
 *.jou
 project_2_cordic/
+project_phasedetector/
 *.str
 .Xil/
 

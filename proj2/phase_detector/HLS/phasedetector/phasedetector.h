@@ -9,6 +9,13 @@
 
 
 #include <ap_fixed.h>
+#include "ap_axi_sdata.h"
+#include "hls_stream.h"
+
+typedef ap_fixed<32, 8> fix_t;
+
+/* From Lab: Axistream Multiple DMAs (axis) */
+typedef hls::axis<float, 0, 0, 0> pkt_t;
 
 const int N = 32;
 
@@ -17,7 +24,6 @@ const int N = 32;
 typedef int   coef_t;
 typedef float data_t;
 typedef float acc_t;
-typedef ap_fixed<32, 8> fix_t;
 
 void phasedetector (
   data_t I,
@@ -36,5 +42,13 @@ void fir (
   data_t *X,
   data_t *Y
   );
-
+  
+/* From Lab: Axistream Multiple DMAs (axis) */
+void phasedetector_stream (
+  hls::stream<pkt_t> &I_in,
+  hls::stream<pkt_t> &Q_in,
+  hls::stream<pkt_t> &R_out,
+  hls::stream<pkt_t> &T_out
+  );
+  
 #endif

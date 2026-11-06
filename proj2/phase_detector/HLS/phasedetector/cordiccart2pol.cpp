@@ -13,12 +13,6 @@ const fix_t INITAL_QUAD_ROTATION = 1.570796326794897;
 void cordiccart2pol(data_t x, data_t y, data_t * r,  data_t * theta)
 {
 	#pragma HLS PIPELINE II=1
-
-	#pragma HLS INTERFACE mode=s_axilite port=return
-	#pragma HLS INTERFACE mode=s_axilite port=x
-	#pragma HLS INTERFACE mode=s_axilite port=y
-	#pragma HLS INTERFACE mode=s_axilite port=r
-	#pragma HLS INTERFACE mode=s_axilite port=theta
 	
 	fix_t xf, yf, thetaf, x_temp;
 	/**

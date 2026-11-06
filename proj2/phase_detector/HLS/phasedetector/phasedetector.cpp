@@ -43,7 +43,7 @@ void phasedetector_stream(
 #pragma HLS INTERFACE mode = s_axilite port = return
 	while (true)
 	{
-#pragma HLS PIPELINE off
+//#pragma HLS PIPELINE off
 		pkt_t i_pkt = I_in.read();
 		pkt_t q_pkt = Q_in.read();
 		bool last = (i_pkt.last == 1 || q_pkt.last == 1);

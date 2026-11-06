@@ -27,8 +27,6 @@ void phasedetector(
 	// cordiccart2pol(data_t x, data_t y, data_t * r,  data_t * theta)
 	// fir (data_t I, data_t Q, data_t *X,data_t *Y)
 
-#pragma HLS PIPELINE II = 1
-
 	data_t x, y;
 
 	fir(I, Q, &x, &y);

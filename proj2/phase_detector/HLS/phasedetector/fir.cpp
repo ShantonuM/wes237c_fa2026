@@ -44,8 +44,6 @@ void firI1 (
 	// #pragma HLS array_partition variable=shift_reg block factor=2
 	// #pragma HLS array_partition variable=c         block factor=2
 
-	#pragma HLS PIPELINE II=1
-
 	/* Leveraged from pp4fpgas book section 2.8/figure 2.5 */
 	Tapped_Delayed_Line:
 	for (i = N - 1; i > 0; i--){

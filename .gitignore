@@ -7,7 +7,7 @@ project_phasedetector/
 *.str
 .Xil/
 
-# Ignore the lab folders
+*DS_Store
 
 # Ignore the Vivado project folders
 *vivado_proj

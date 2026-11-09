@@ -1,0 +1,13 @@
+Test case  1: PASS (out = 13776373)
+Test case  2: PASS (out = -17194599)
+Test case  3: PASS (out = -15510829)
+Test case  4: PASS (out = -34655776)
+Test case  5: PASS (out = 10525604)
+Test case  6: PASS (out = 18899506)
+Test case  7: PASS (out = -21665)
+Test case  8: PASS (out = 39403658)
+Test case  9: PASS (out = -30194554)
+Test case 10: PASS (out = 877331)
+------------------------------------------------
+TEST PASSED: all 10 test cases match out.gold.dat
+------------------------------------------------

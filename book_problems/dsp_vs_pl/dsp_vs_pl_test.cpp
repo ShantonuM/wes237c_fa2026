@@ -3,7 +3,8 @@
  *
  * Reads the test cases from in.dat, runs mac() on each one and compares the
  * results with out.gold.dat (one expected value per line). All results are
- * written to dsp_vs_pl.log; nothing is printed to the console.
+ * written to LOG_FILE; nothing is printed to the console. The Makefile sets
+ * LOG_FILE per implementation (dsp_test.log, pl_test.log).
  *
  * Returns 0 if every test case passes and 1 otherwise, so Vitis HLS C
  * simulation and C/RTL co-simulation report the result correctly.
@@ -14,7 +15,9 @@
 
 #define IN_FILE   "in.dat"
 #define GOLD_FILE "out.gold.dat"
+#ifndef LOG_FILE
 #define LOG_FILE  "dsp_vs_pl_test.log"
+#endif
 
 void mac(int in1[SIZE], int in2[SIZE], int *out);
 

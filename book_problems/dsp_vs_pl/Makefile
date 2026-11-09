@@ -27,9 +27,12 @@ HLS_COMPILER=vivado_hls -f
 endif
 
 
-EXAMPLES_CPP = $(shell ls *_test.cpp)
-EXAMPLES_BIN = $(patsubst %.cpp,%,$(EXAMPLES_CPP))
-EXAMPLES_LOG = $(patsubst %.cpp,%.log,$(EXAMPLES_CPP))
+# Two implementations of mac() share one testbench ($(TOP)_test.cpp):
+#   dsp.cpp - multiply/add bound to DSP48 slices
+#   pl.cpp  - multiply/add bound to fabric (LUTs)
+IMPLS = dsp pl
+EXAMPLES_BIN = $(addsuffix _test.bin,$(IMPLS))
+EXAMPLES_LOG = $(addsuffix _test.log,$(IMPLS))
 
 CC = gcc
 CXX = g++
@@ -51,6 +54,16 @@ HLS_CONFIG_FILE = $(CURDIR)/__hls_config__.ini
 	$(CXX) -I$(VHLS)/include -c $< -o $@
 
 
+# Build one test binary per implementation; each writes its own <impl>_test.log
+$(EXAMPLES_BIN): %_test.bin: $(TOP)_test.cpp %.cpp $(TOP).h
+	LD_LIBRARY_PATH=$(LD_LIBRARY_PATH) $(CXX) -I$(VHLS)/include -DLOG_FILE='"$*_test.log"' $(TOP)_test.cpp $*.cpp -g -o $@
+
+# The testbench writes the log itself, so do not redirect stdout into it.
+# The logs are phony so "make test" always reruns the tests (a failed run
+# leaves its log behind, which would otherwise look up to date).
+$(EXAMPLES_LOG): %_test.log: %_test.bin in.dat out.gold.dat
+	./$< || { s=$$?; echo "./$< failed $$s, see $@" >&2; exit $$s; }
+
 %_test.bin: %_test.cpp %.cpp
 	LD_LIBRARY_PATH=$(LD_LIBRARY_PATH) $(CXX) -I$(VHLS)/include $? -g -o $@
 
@@ -59,8 +72,8 @@ HLS_CONFIG_FILE = $(CURDIR)/__hls_config__.ini
 #	dft_precompute.c \
 
 
-CXX_HLS_TARGET_FILES = \
-	$(TOP).cpp
+# One HLS component per implementation: dsp.comp and pl.comp
+CXX_HLS_TARGET_FILES = $(addsuffix .cpp,$(IMPLS))
 
 HLS_TARGETS = $(patsubst %.cpp,%.comp,$(CXX_HLS_TARGET_FILES))
 
@@ -79,14 +92,18 @@ hls: $(HLS_TARGETS)
 
 test: $(EXAMPLES_LOG)
 
+# Synthesis reports are named after the top function (mac), so copy each
+# one out as <impl>_csynth.rpt
 report: hls
-	cp -f $(TOP).comp/hls/syn/report/$(TOP)_csynth.rpt $(CURDIR) || true
+	for i in $(IMPLS); do \
+	  cp -f $$i.comp/hls/syn/report/mac_csynth.rpt $(CURDIR)/$${i}_csynth.rpt || true; \
+	done
 
 
 clean:
 	rm -rf *.o *.log *.bin *.tcl *.comp *.rpt logs hls out.dat
 
-.PHONY: clean hls test report
+.PHONY: clean hls test report $(EXAMPLES_LOG)
 
 # Prevent make from deleting the .bin intermediate files
 .PRECIOUS: %.bin %.tcl

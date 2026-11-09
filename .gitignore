@@ -11,5 +11,5 @@ project_phasedetector/
 
 # Ignore the Vivado project folders
 *vivado_proj
-vivado.log
+*vivado*.log
 *export*.tcl

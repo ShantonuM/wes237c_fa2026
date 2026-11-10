@@ -7,17 +7,26 @@ void accumulate
   int *out
 )
 {
+  int buf[SIZE];
   int i, running_sum;
 
-  #pragma HLS array_partition variable=in complete
+  /*
+   * Local copy of the input, completely partitioned into registers (FFs)
+   * in the programmable logic instead of BRAM.
+   */
+  #pragma HLS array_partition variable=buf complete
 
-  *out = 0;
+  for (i = 0; i < SIZE; i++)
+  {
+    buf[i] = in[i];
+  }
+
   running_sum = 0;
 
   for (i = 0; i < SIZE; i++)
   {
     #pragma HLS PIPELINE II=1
-    running_sum += in[i];
+    running_sum += buf[i];
   }
 
   *out = running_sum;

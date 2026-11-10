@@ -25,7 +25,7 @@ void accumulate
 
   for (i = 0; i < SIZE; i++)
   {
-    #pragma HLS PIPELINE II=1
+    #pragma HLS UNROLL
     running_sum += buf[i];
   }
 
